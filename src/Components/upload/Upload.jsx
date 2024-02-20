@@ -1,30 +1,15 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import UploadForm from "./UploadForm"
+import ProgressList from "./progressList/ProgressList"
 
 const Upload = () => {
+  const [files, setFiles] = useState([])
   return (
     <div>
-      <UploadForm />
+      <UploadForm setFiles={setFiles} />
+      <ProgressList files={files} />
     </div>
   )
 }
 
 export default Upload
-
-const [file, setFile] = useState(null)
-const [error, setError] = useState(null)
-
-const allowedFileTypes = ["image/png", "image/jpeg"]
-
-const changeHandler = (e) => {
-  let selectedFile = e.target.files[0]
-
-  if (selectedFile && allowedFileTypes.includes(selectedFile.type)) {
-    setFile(selectedFile)
-    setError("")
-  } else {
-    setFile(null)
-    setError("Please select an image file (png or jpeg)")
-  }
-  return <div>Upload</div>
-}

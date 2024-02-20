@@ -2,7 +2,7 @@ import { Add } from "@mui/icons-material"
 import { Fab, Input } from "@mui/material"
 import { useRef } from "react"
 
-const Form = ({ setFiles }) => {
+const UploadForm = ({ setFiles }) => {
   const fileRef = useRef()
   const handleClick = () => {
     fileRef.current.click()
@@ -27,4 +27,4 @@ const Form = ({ setFiles }) => {
   )
 }
 
-export default Form
+export default UploadForm
