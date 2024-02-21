@@ -1,18 +1,18 @@
 import React from "react"
-import Title from "./Components/Title"
-import { Container } from "@mui/material"
-import Nav from "./Components/Nav"
-import ImagesList from "./Components/imagesList/ImagesList"
-import Upload from "./Components/upload/Upload"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import StartPage from "./SignIn_SignUp/StartPage"
+import Home from "./Home"
 
 function App() {
   return (
-    <Container maxWidth="lg" sx={{ textAlign: "center", mt: "3rem" }}>
-      <Nav />
-      <Title />
-      <Upload />
-      <ImagesList />
-    </Container>
+    <BrowserRouter>
+      <div>
+        <Routes>
+          <Route path="/" element={<StartPage />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 

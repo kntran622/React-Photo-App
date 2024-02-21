@@ -1,3 +1,4 @@
+import * as React from "react"
 import Box from "@mui/material/Box"
 import Avatar from "@mui/material/Avatar"
 import Menu from "@mui/material/Menu"
@@ -14,6 +15,9 @@ import { Button } from "@mui/material"
 import { Lock } from "@mui/icons-material"
 import { useState, Fragment } from "react"
 import profileImage from "../img/pfp.jpg"
+import { signOut } from "firebase/auth"
+import { userDatabase } from "../Firebase/config"
+import { useNavigate } from "react-router-dom"
 
 export default function Nav() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -25,9 +29,18 @@ export default function Nav() {
     setAnchorEl(null)
   }
 
-  const [currentUser, setCurrentUser] = useState({
+  const history = useNavigate()
+
+  const handleLogout = () => {
+    signOut(userDatabase).then((val) => {
+      console.log(val, "val")
+      history("/")
+    })
+  }
+
+  const [currentUser, setCurrentUser] = React.useState({
     email: "test@test.com",
-    displayName: "Kwa",
+    displayName: "",
     photoURL: profileImage,
   })
 
@@ -99,7 +112,7 @@ export default function Nav() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

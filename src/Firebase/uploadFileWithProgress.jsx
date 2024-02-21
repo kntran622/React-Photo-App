@@ -9,7 +9,6 @@ const uploadFileWithProgress = (file, subFolder, imageName, setProgress) => {
       "state_changed",
       (snapShot) => {
         const progress = (snapShot.bytesTransferred / snapShot.totalBytes) * 100
-
         setProgress(progress)
       },
       (error) => {
@@ -19,7 +18,6 @@ const uploadFileWithProgress = (file, subFolder, imageName, setProgress) => {
         try {
           const url = await getDownloadURL(storageRef)
           resolve(url)
-          console.log(imageName)
         } catch (error) {
           reject(error)
         }
