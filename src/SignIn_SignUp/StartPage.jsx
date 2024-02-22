@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import "./styles.css"
 import SignInForm from "./SignIn"
 import SignUpForm from "./SignUp"
+import Title from "../Components/Title"
 
 export default function StartPage() {
   const [type, setType] = useState("signIn")
@@ -14,10 +15,8 @@ export default function StartPage() {
   const containerClass =
     "container " + (type === "signUp" ? "right-panel-active" : "")
   return (
-    <div className="StartPage">
-      <div className="title">
-        <h1>FireGram</h1>
-      </div>
+    <body className="Startpage">
+      <Title />
       <div className={containerClass} id="container">
         <SignUpForm />
         <SignInForm />
@@ -51,6 +50,6 @@ export default function StartPage() {
           </div>
         </div>
       </div>
-    </div>
+    </body>
   )
 }

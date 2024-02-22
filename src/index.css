@@ -10,22 +10,15 @@
 body {
   font-family: "Noto Serif";
   color: var(--secondary);
-  padding: 0px 100px;
+  margin: 0;
+  background: #feece2;
 }
 
-.title h1 {
-  color: var(--primary);
-  font-size: 2rem;
-  letter-spacing: 2px;
-  font-weight: normal;
-}
-.title h2,
-.title p {
-  text-align: center;
-}
-.title h2 {
-  margin-top: 60px;
-  font-size: 2.6rem;
+.title {
+  background: linear-gradient(to right, #f32170, #ff6b08);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-size: 50px;
 }
 
 /* upload form styles */
@@ -33,9 +26,3 @@ form {
   margin: 20px auto 40px;
   text-align: center;
 }
-
-/* progress bar styles */
-
-/* image grid styles */
-
-/* modal styles */

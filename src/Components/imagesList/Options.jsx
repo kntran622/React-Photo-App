@@ -8,11 +8,12 @@ import { IconButton } from "@mui/material"
 import { Delete, MoreVert } from "@mui/icons-material"
 import deleteDocument from "../../Firebase/deleteDocument"
 import deleteFile from "../../Firebase/deleteFile"
+import useGetUserInfo from "../../Hooks/useGetUserInfo"
 
 export default function Options({ imageId }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
-  const currentUser = { uid: "userId" }
+  const currentUser = useGetUserInfo()
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -21,8 +22,8 @@ export default function Options({ imageId }) {
   }
   const handleDelete = async () => {
     try {
-      await deleteDocument("gallery", imageId)
-      await deleteFile(`gallery/${currentUser.uid}/${imageId}`)
+      await deleteDocument(`${currentUser.userID}`, imageId)
+      await deleteFile(`${currentUser.userID}/${imageId}`)
     } catch (error) {
       alert(error.message)
       console.log(error)

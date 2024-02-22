@@ -9,15 +9,14 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #f6f5f7;
+.Startpage {
+  background: #feece2;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
   height: 100vh;
-  margin: -20px 0 50px;
 }
 
 h1 {
@@ -72,9 +71,16 @@ button:focus {
 button.ghost {
   background-color: transparent;
   border-color: #ffffff;
+  border-width: 0.2rem;
 }
 
-form {
+button.ghost:hover {
+  background-color: white;
+  color: #ff416c;
+  cursor: pointer;
+}
+
+.a {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -216,21 +222,6 @@ input {
   transform: translateX(20%);
 }
 
-.social-container {
-  margin: 20px 0;
-}
-
-.social-container a {
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
-}
-
 footer {
   background-color: #222;
   color: #fff;
@@ -254,4 +245,16 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
+}
+
+.lightsignButton:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #ff4b2b;
+}
+
+.darkSignButton:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #ff4b2b;
 }

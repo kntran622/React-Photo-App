@@ -6,9 +6,11 @@ import { Typography } from "@mui/material"
 import moment from "moment"
 import Options from "./Options"
 import useFirestore from "../../Firebase/useFirestore"
+import useGetUserInfo from "../../Hooks/useGetUserInfo"
 
 export default function ImagesList() {
-  const { documents } = useFirestore("gallery")
+  const currentUser = useGetUserInfo()
+  const { documents } = useFirestore(`${currentUser.userID}`)
 
   return (
     <Box>

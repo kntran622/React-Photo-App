@@ -5,30 +5,32 @@ import { CheckCircleOutline } from "@mui/icons-material"
 import { v4 as uuidv4 } from "uuid"
 import uploadFileWithProgress from "../../../Firebase/uploadFileWithProgress"
 import addDocument from "../../../Firebase/addDocument"
+import useGetUserInfo from "../../../Hooks/useGetUserInfo"
 
 const ProgressItem = ({ file }) => {
   const [progress, setProgress] = useState(50)
   const [imageURL, setImageURL] = useState(null)
-  const currentUser = { uid: "userId" }
+  const currentUser = useGetUserInfo()
 
   useEffect(() => {
+    console.log(currentUser)
     const uploadImage = async () => {
       const imageName = uuidv4() + "." + file.name.split(".").pop()
       try {
         const url = await uploadFileWithProgress(
           file,
-          `gallery/${currentUser.uid}`,
+          `${currentUser.userID}`,
           imageName,
           setProgress
         )
         const galleryDoc = {
           imageURL: url,
-          uid: currentUser.uid,
-          uEmail: "test@test.com",
-          uName: "John",
+          uid: currentUser.userID,
+          uEmail: currentUser.userEmail,
+          uName: currentUser.name,
           uPhoto: "",
         }
-        await addDocument("gallery", galleryDoc, imageName)
+        await addDocument(`${currentUser.userID}`, galleryDoc, imageName)
         setImageURL(null)
       } catch (error) {
         alert(error.message)

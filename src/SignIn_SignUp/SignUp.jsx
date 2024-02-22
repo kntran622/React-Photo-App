@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useNavigate } from "react-router-dom"
 
 function SignUpForm({}) {
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   const [state, setState] = React.useState({
     name: "",
@@ -22,11 +22,6 @@ function SignUpForm({}) {
   const handleOnSubmit = async (evt) => {
     evt.preventDefault()
 
-    const { name, email, password, confirmPassword } = state
-    alert(
-      `You are sign up with name: ${name} email: ${email} and password: ${password}`
-    )
-
     for (const key in state) {
       setState({
         ...state,
@@ -34,19 +29,27 @@ function SignUpForm({}) {
       })
     }
 
-    createUserWithEmailAndPassword(userDatabase, email, password).then(
-      (data) => {
-        console.log(data, "authData")
-        history("/home")
-      }
+    const results = await createUserWithEmailAndPassword(
+      userDatabase,
+      state.email,
+      state.password
     )
+    console.log(results)
+    const authInfo = {
+      userID: results.user.uid,
+      name: state.name,
+      profilePhoto: null,
+      userEmail: results.user.email,
+      isAuth: true,
+    }
+    localStorage.setItem("auth", JSON.stringify(authInfo))
+    navigate("/home")
   }
 
   return (
     <div className="form-container sign-up-container">
-      <form onSubmit={handleOnSubmit}>
+      <form className="a" onSubmit={handleOnSubmit}>
         <h1>Create Account</h1>
-        <span>or use your email for registration</span>
         <input
           type="text"
           name="name"
@@ -75,7 +78,7 @@ function SignUpForm({}) {
           onChange={handleChange}
           placeholder="Confirm Password"
         />
-        <button>Sign Up</button>
+        <button className="lightsignButton">Sign Up</button>
       </form>
     </div>
   )

@@ -20,7 +20,7 @@ const UploadForm = ({ setFiles }) => {
         inputRef={fileRef}
         onChange={handleChange}
       />
-      <Fab color="primary" aria-label="add" onClick={handleClick}>
+      <Fab color="warning" aria-label="add" onClick={handleClick}>
         <Add fontSize="large" />
       </Fab>
     </form>

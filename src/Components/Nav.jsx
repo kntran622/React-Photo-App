@@ -29,13 +29,16 @@ export default function Nav() {
     setAnchorEl(null)
   }
 
-  const history = useNavigate()
+  const navigate = useNavigate()
 
-  const handleLogout = () => {
-    signOut(userDatabase).then((val) => {
-      console.log(val, "val")
-      history("/")
-    })
+  const handleLogout = async () => {
+    try {
+      await signOut(userDatabase)
+      localStorage.clear()
+      navigate("/")
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   const [currentUser, setCurrentUser] = React.useState({

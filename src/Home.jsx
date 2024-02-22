@@ -7,12 +7,17 @@ import Upload from "./Components/upload/Upload"
 
 const Home = () => {
   return (
-    <Container maxWidth="lg" sx={{ textAlign: "center", mt: "3rem" }}>
+    <>
       <Nav />
-      <Title />
-      <Upload />
-      <ImagesList />
-    </Container>
+      <Container
+        maxWidth="lg"
+        sx={{ textAlign: "center", mt: "3rem", minWidth: "80%" }}
+      >
+        <Title />
+        <Upload />
+        <ImagesList />
+      </Container>
+    </>
   )
 }
 

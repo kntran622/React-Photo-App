@@ -2,7 +2,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { firestore } from "./config"
 
-const useFirestore = (collectionName = "gallery") => {
+const useFirestore = (collectionName) => {
   const [documents, setDocuments] = useState([])
   useEffect(() => {
     const q = query(
